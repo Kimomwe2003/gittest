@@ -1,0 +1,138 @@
+Enter password: ***********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 31
+Server version: 8.3.0 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database order;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order' at line 1
+mysql> create database Order;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Order' at line 1
+mysql> create database Deliveries;
+Query OK, 1 row affected (0.16 sec)
+
+mysql> show databases;
++-------------------------+
+| Database                |
++-------------------------+
+| burgerorder             |
+| customer                |
+| deliveries              |
+| hotel_management_system |
+| information_schema      |
+| menu                    |
+| mysql                   |
+| payments                |
+| performance_schema      |
+| ruo                     |
+| sys                     |
++-------------------------+
+11 rows in set (0.00 sec)
+
+mysql> use deliveries;
+Database changed
+mysql> create table customers(
+    -> deliveries_ID int not null auto_increment primary key,
+    -> customer_ID int not null auto_increment primary key,
+    -> date varchar (10) not null);
+ERROR 1075 (42000): Incorrect table definition; there can be only one auto column and it must be defined as a key
+mysql> create table customers(
+    -> deliveries_ID int nnull,
+    -> customer_ID int not null auto_increment primary key,
+    -> date varchar (10) not null);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'nnull,
+customer_ID int not null auto_increment primary key,
+date varchar (10) no' at line 2
+mysql> ^C
+mysql> ^C
+mysql> create database CakeOrder;
+Query OK, 1 row affected (0.33 sec)
+
+mysql> use CakeOrder;
+Database changed
+mysql> create table C_Orders(
+    -> Order_ID int not null auto_increment primary key,
+    -> Order_Datetime date not null,
+    -> Order_Status varchar (30) not null);
+Query OK, 0 rows affected (0.76 sec)
+
+mysql> create table customer(
+    -> customer_ID int not null auto_increment primary key,
+    -> customer_Name varchar (30) not null,
+    -> customer_Email varchar (20) not null,
+    -> customer_Phone varchar (20) not null);
+Query OK, 0 rows affected (0.35 sec)
+
+mysql> create table menu(
+    -> menu_ID int not null auto_increment primary key,
+    -> menu_name varchar(20) not null,
+    -> menu_price varchar(20) not null,
+    -> menu_description varchar(15) not null);
+Query OK, 0 rows affected (0.29 sec)
+
+mysql> create table payment(
+    -> Payment_ID int not null auto_increment primary key,
+    -> Total_Amount varchar (30) not null,
+    -> Payment_Method varchar (20) not null,
+    -> Order_ID int null,
+    -> customer_ID int null,
+    -> foreign key (customer_ID) references customer(customer_ID^C
+mysql> use CakeOrder;
+Database changed
+mysql> create table payment(
+    -> Payment_ID int not null auto_increment primary key,
+    -> Total_Amount varchar (30) not null,
+    -> Payment_Method varchar (20) not null,
+    -> Order_ID int null,
+    -> customer_ID int null,
+    -> foreign key (customer_ID) references customer(customer_ID) on delete cascade on update cascade,
+    -> foreign key (Order_ID) references C_Orders(Order_ID) on delete cascade on update cascade);
+Query OK, 0 rows affected (0.60 sec)
+
+mysql> create table address(customer_ID not null auto_increment primary key,
+    -> order_ID int not null);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'not null auto_increment primary key,
+order_ID int not null)' at line 1
+mysql> create table address(
+    -> customer_ID not null auto_increment primary key,
+    ->
+    -> ycrdfjk;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'not null auto_increment primary key,
+
+ycrdfjk' at line 2
+mysql> create table address(
+    -> address_line varchar (30) not null,
+    -> customer_ID int null,
+    -> Order_ID int null,
+    -> foreign key(customer_ID) references customer(customer_ID) on delete cascade on update cascade,
+    -> foreign key (Order_ID) references C_Orders(Order_ID) on delete cascade on update cascade);
+Query OK, 0 rows affected (0.64 sec)
+
+mysql> create table order_detail(
+    -> Order_ID int null,
+    -> menu_ID int null,
+    -> order_qty varchar (20) not null,
+    -> total_price int null,
+    -> foreign key (Order_ID) references C_Orders(Order_ID) on delete cascade on update cascade);
+Query OK, 0 rows affected (0.49 sec)
+
+mysql> drop table order_detail;
+Query OK, 0 rows affected (0.41 sec)
+
+mysql> create table order_detail(
+    -> Order_ID int null,
+    -> menu_ID int null,
+    -> order_qty varchar (20) not null,
+    -> total_price int null,
+    -> foreign key (Order_ID) references C_Orders(Order_ID) on delete cascade on update cascade,
+    -> foreign key (menu_ID) references menu(menu_ID) on delete cascade on update cascade);
+Query OK, 0 rows affected (0.59 sec)
+
+mysql>

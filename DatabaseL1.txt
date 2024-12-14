@@ -1,0 +1,97 @@
+mysql> create database Ruo;
+Query OK, 1 row affected (0.19 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| ruo                |
+| sys                |
++--------------------+
+5 rows in set (0.20 sec)
+
+mysql> use ruo;
+Database changed
+mysql> create table staffs (staffID int not null auto_increment primary key, staffName varchar (40) not null);
+Query OK, 0 rows affected (0.70 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_ruo |
++---------------+
+| staffs        |
++---------------+
+1 row in set (0.05 sec)
+
+mysql> show columns from staffs;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| staffID   | int         | NO   | PRI | NULL    | auto_increment |
+| staffName | varchar(40) | NO   |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+2 rows in set (0.07 sec)
+
+mysql> create table classes (class_number int not null auto_increment foreign key, department_name varchar (40) not null);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreign key, department_name varchar (40) not null)' at line 1
+mysql> show tables;
++---------------+
+| Tables_in_ruo |
++---------------+
+| staffs        |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> show columns from staffs;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| staffID   | int         | NO   | PRI | NULL    | auto_increment |
+| staffName | varchar(40) | NO   |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.37 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_ruo |
++---------------+
+| classes       |
+| staffs        |
++---------------+
+2 rows in set (0.00 sec)
+
+mysql> show columns from classes;
++-----------------+-------------+------+-----+---------+----------------+
+| Field           | Type        | Null | Key | Default | Extra          |
++-----------------+-------------+------+-----+---------+----------------+
+| class_number    | int         | NO   | PRI | NULL    | auto_increment |
+| department_name | varchar(40) | NO   |     | NULL    |                |
++-----------------+-------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.39 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_ruo |
++---------------+
+| classes       |
+| staffs        |
+| students      |
++---------------+
+3 rows in set (0.00 sec)
+
+mysql> show columns from students;
+mysql> show columns from students;
++---------------------+-------------+------+-----+---------+----------------+
+| Field               | Type        | Null | Key | Default | Extra          |
++---------------------+-------------+------+-----+---------+----------------+
+| registration_number | int         | NO   | PRI | NULL    | auto_increment |
+| marks               | varchar(10) | NO   |     | NULL    |                |
++---------------------+-------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
